@@ -93,6 +93,26 @@ namespace Elasticsearch.Net.Specification.CatApi
 		[MapsApi("cat.allocation", "node_id")]
 		public Task<TResponse> AllocationAsync<TResponse>(string nodeId, CatAllocationRequestParameters requestParameters = null, CancellationToken ctx = default)
 			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(GET, Url($"_cat/allocation/{nodeId:nodeId}"), ctx, null, RequestParams(requestParameters));
+		///<summary>GET on /_cat/component_templates <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html</para></summary>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		public TResponse ComponentTemplates<TResponse>(ComponentTemplatesRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(GET, "_cat/component_templates", null, RequestParams(requestParameters));
+		///<summary>GET on /_cat/component_templates <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html</para></summary>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		[MapsApi("cat.component_templates", "")]
+		public Task<TResponse> ComponentTemplatesAsync<TResponse>(ComponentTemplatesRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(GET, "_cat/component_templates", ctx, null, RequestParams(requestParameters));
+		///<summary>GET on /_cat/component_templates/{name} <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html</para></summary>
+		///<param name = "name">A pattern that returned component template names must match</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		public TResponse ComponentTemplates<TResponse>(string name, ComponentTemplatesRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(GET, Url($"_cat/component_templates/{name:name}"), null, RequestParams(requestParameters));
+		///<summary>GET on /_cat/component_templates/{name} <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html</para></summary>
+		///<param name = "name">A pattern that returned component template names must match</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		[MapsApi("cat.component_templates", "name")]
+		public Task<TResponse> ComponentTemplatesAsync<TResponse>(string name, ComponentTemplatesRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(GET, Url($"_cat/component_templates/{name:name}"), ctx, null, RequestParams(requestParameters));
 		///<summary>GET on /_cat/count <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html</para></summary>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
 		public TResponse Count<TResponse>(CatCountRequestParameters requestParameters = null)

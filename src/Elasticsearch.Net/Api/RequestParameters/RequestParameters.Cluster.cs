@@ -67,6 +67,13 @@ namespace Elasticsearch.Net.Specification.ClusterApi
 	///<summary>Request options for DeleteVotingConfigExclusions <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html</para></summary>
 	public class DeleteVotingConfigExclusionsRequestParameters : RequestParameters<DeleteVotingConfigExclusionsRequestParameters>
 	{
+		///<summary>Timeout for submitting request to master</summary>
+		public TimeSpan MasterTimeout
+		{
+			get => Q<TimeSpan>("master_timeout");
+			set => Q("master_timeout", value);
+		}
+
 		///<summary>Specifies whether to wait for all excluded nodes to be removed from the cluster before clearing the voting configuration exclusions list.</summary>
 		public bool? WaitForRemoval
 		{
@@ -174,13 +181,6 @@ namespace Elasticsearch.Net.Specification.ClusterApi
 			set => Q("master_timeout", value);
 		}
 
-		///<summary>Whether to return HTTP 200 instead of 408 in case of a cluster health timeout from the server side</summary>
-		public bool? Return200ForClusterHealthTimeout
-		{
-			get => Q<bool? >("return_200_for_cluster_health_timeout");
-			set => Q("return_200_for_cluster_health_timeout", value);
-		}
-
 		///<summary>Explicit operation timeout</summary>
 		public TimeSpan Timeout
 		{
@@ -252,6 +252,13 @@ namespace Elasticsearch.Net.Specification.ClusterApi
 	///<summary>Request options for PostVotingConfigExclusions <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/voting-config-exclusions.html</para></summary>
 	public class PostVotingConfigExclusionsRequestParameters : RequestParameters<PostVotingConfigExclusionsRequestParameters>
 	{
+		///<summary>Timeout for submitting request to master</summary>
+		public TimeSpan MasterTimeout
+		{
+			get => Q<TimeSpan>("master_timeout");
+			set => Q("master_timeout", value);
+		}
+
 		///<summary>
 		/// A comma-separated list of the persistent ids of the nodes to exclude from the voting configuration. If specified, you may not also specify
 		/// ?node_names.

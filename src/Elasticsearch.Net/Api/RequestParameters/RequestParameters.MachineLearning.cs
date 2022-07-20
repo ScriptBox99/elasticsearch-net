@@ -32,14 +32,6 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	public class CloseJobRequestParameters : RequestParameters<CloseJobRequestParameters>
 	{
 		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
-		[Obsolete("Scheduled to be removed in 8.0, deprecated")]
-		public bool? AllowNoJobs
-		{
-			get => Q<bool? >("allow_no_jobs");
-			set => Q("allow_no_jobs", value);
-		}
-
-		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
 		public bool? AllowNoMatch
 		{
 			get => Q<bool? >("allow_no_match");
@@ -172,6 +164,13 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	///<summary>Request options for DeleteTrainedModel <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-trained-models.html</para></summary>
 	public class DeleteTrainedModelRequestParameters : RequestParameters<DeleteTrainedModelRequestParameters>
 	{
+		///<summary>True if the model should be forcefully deleted</summary>
+		public bool? Force
+		{
+			get => Q<bool? >("force");
+			set => Q("force", value);
+		}
+
 		///<summary>Controls the amount of time to wait for the model to be deleted.</summary>
 		public TimeSpan Timeout
 		{
@@ -345,14 +344,6 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	public class GetDatafeedStatsRequestParameters : RequestParameters<GetDatafeedStatsRequestParameters>
 	{
 		///<summary>Whether to ignore if a wildcard expression matches no datafeeds. (This includes `_all` string or when no datafeeds have been specified)</summary>
-		[Obsolete("Scheduled to be removed in 8.0, deprecated")]
-		public bool? AllowNoDatafeeds
-		{
-			get => Q<bool? >("allow_no_datafeeds");
-			set => Q("allow_no_datafeeds", value);
-		}
-
-		///<summary>Whether to ignore if a wildcard expression matches no datafeeds. (This includes `_all` string or when no datafeeds have been specified)</summary>
 		public bool? AllowNoMatch
 		{
 			get => Q<bool? >("allow_no_match");
@@ -363,14 +354,6 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	///<summary>Request options for GetDatafeeds <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-datafeed.html</para></summary>
 	public class GetDatafeedsRequestParameters : RequestParameters<GetDatafeedsRequestParameters>
 	{
-		///<summary>Whether to ignore if a wildcard expression matches no datafeeds. (This includes `_all` string or when no datafeeds have been specified)</summary>
-		[Obsolete("Scheduled to be removed in 8.0, deprecated")]
-		public bool? AllowNoDatafeeds
-		{
-			get => Q<bool? >("allow_no_datafeeds");
-			set => Q("allow_no_datafeeds", value);
-		}
-
 		///<summary>Whether to ignore if a wildcard expression matches no datafeeds. (This includes `_all` string or when no datafeeds have been specified)</summary>
 		public bool? AllowNoMatch
 		{
@@ -413,14 +396,6 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	public class GetJobStatsRequestParameters : RequestParameters<GetJobStatsRequestParameters>
 	{
 		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
-		[Obsolete("Scheduled to be removed in 8.0, deprecated")]
-		public bool? AllowNoJobs
-		{
-			get => Q<bool? >("allow_no_jobs");
-			set => Q("allow_no_jobs", value);
-		}
-
-		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
 		public bool? AllowNoMatch
 		{
 			get => Q<bool? >("allow_no_match");
@@ -431,14 +406,6 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	///<summary>Request options for GetJobs <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job.html</para></summary>
 	public class GetJobsRequestParameters : RequestParameters<GetJobsRequestParameters>
 	{
-		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
-		[Obsolete("Scheduled to be removed in 8.0, deprecated")]
-		public bool? AllowNoJobs
-		{
-			get => Q<bool? >("allow_no_jobs");
-			set => Q("allow_no_jobs", value);
-		}
-
 		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
 		public bool? AllowNoMatch
 		{
@@ -451,6 +418,35 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 		{
 			get => Q<bool? >("exclude_generated");
 			set => Q("exclude_generated", value);
+		}
+	}
+
+	///<summary>Request options for GetMemoryStats <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-memory.html</para></summary>
+	public class GetMemoryStatsRequestParameters : RequestParameters<GetMemoryStatsRequestParameters>
+	{
+		///<summary>Explicit operation timeout for connection to master node</summary>
+		public TimeSpan MasterTimeout
+		{
+			get => Q<TimeSpan>("master_timeout");
+			set => Q("master_timeout", value);
+		}
+
+		///<summary>Explicit operation timeout</summary>
+		public TimeSpan Timeout
+		{
+			get => Q<TimeSpan>("timeout");
+			set => Q("timeout", value);
+		}
+	}
+
+	///<summary>Request options for GetModelSnapshotUpgradeStats <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-model-snapshot-upgrade-stats.html</para></summary>
+	public class GetModelSnapshotUpgradeStatsRequestParameters : RequestParameters<GetModelSnapshotUpgradeStatsRequestParameters>
+	{
+		///<summary>Whether to ignore if a wildcard expression matches no jobs or no snapshots. (This includes the `_all` string.)</summary>
+		public bool? AllowNoMatch
+		{
+			get => Q<bool? >("allow_no_match");
+			set => Q("allow_no_match", value);
 		}
 	}
 
@@ -472,11 +468,6 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 
 	///<summary>Request options for GetAnomalyRecords <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-record.html</para></summary>
 	public class GetAnomalyRecordsRequestParameters : RequestParameters<GetAnomalyRecordsRequestParameters>
-	{
-	}
-
-	///<summary>Request options for GetTrainedModelDeploymentStats <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-trained-model-deployment-stats.html</para></summary>
-	public class GetTrainedModelDeploymentStatsRequestParameters : RequestParameters<GetTrainedModelDeploymentStatsRequestParameters>
 	{
 	}
 
@@ -575,8 +566,8 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 		}
 	}
 
-	///<summary>Request options for InferTrainedModelDeployment <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model-deployment.html</para></summary>
-	public class InferTrainedModelDeploymentRequestParameters : RequestParameters<InferTrainedModelDeploymentRequestParameters>
+	///<summary>Request options for InferTrainedModel <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model.html</para></summary>
+	public class InferTrainedModelRequestParameters : RequestParameters<InferTrainedModelRequestParameters>
 	{
 		///<summary>Controls the amount of time to wait for inference results.</summary>
 		public TimeSpan Timeout
@@ -627,6 +618,19 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	///<summary>Request options for PreviewDatafeed <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-preview-datafeed.html</para></summary>
 	public class PreviewDatafeedRequestParameters : RequestParameters<PreviewDatafeedRequestParameters>
 	{
+		///<summary>The end time when the datafeed preview should stop</summary>
+		public string End
+		{
+			get => Q<string>("end");
+			set => Q("end", value);
+		}
+
+		///<summary>The start time from where the datafeed preview should begin</summary>
+		public string Start
+		{
+			get => Q<string>("start");
+			set => Q("start", value);
+		}
 	}
 
 	///<summary>Request options for PutCalendar <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-put-calendar.html</para></summary>
@@ -798,6 +802,34 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	///<summary>Request options for StartTrainedModelDeployment <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/start-trained-model-deployment.html</para></summary>
 	public class StartTrainedModelDeploymentRequestParameters : RequestParameters<StartTrainedModelDeploymentRequestParameters>
 	{
+		///<summary>A byte-size value for configuring the inference cache size. For example, 20mb.</summary>
+		public string CacheSize
+		{
+			get => Q<string>("cache_size");
+			set => Q("cache_size", value);
+		}
+
+		///<summary>The number of model allocations on each node where the model is deployed.</summary>
+		public int? NumberOfAllocations
+		{
+			get => Q<int? >("number_of_allocations");
+			set => Q("number_of_allocations", value);
+		}
+
+		///<summary>Controls how many inference requests are allowed in the queue at a time.</summary>
+		public int? QueueCapacity
+		{
+			get => Q<int? >("queue_capacity");
+			set => Q("queue_capacity", value);
+		}
+
+		///<summary>The number of threads used by each model allocation during inference.</summary>
+		public int? ThreadsPerAllocation
+		{
+			get => Q<int? >("threads_per_allocation");
+			set => Q("threads_per_allocation", value);
+		}
+
 		///<summary>Controls the amount of time to wait for the model to deploy.</summary>
 		public TimeSpan Timeout
 		{
@@ -863,6 +895,22 @@ namespace Elasticsearch.Net.Specification.MachineLearningApi
 	///<summary>Request options for StopTrainedModelDeployment <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/stop-trained-model-deployment.html</para></summary>
 	public class StopTrainedModelDeploymentRequestParameters : RequestParameters<StopTrainedModelDeploymentRequestParameters>
 	{
+		///<summary>
+		/// Whether to ignore if a wildcard expression matches no deployments. (This includes `_all` string or when no deployments have been
+		/// specified)
+		///</summary>
+		public bool? AllowNoMatch
+		{
+			get => Q<bool? >("allow_no_match");
+			set => Q("allow_no_match", value);
+		}
+
+		///<summary>True if the deployment should be forcefully stopped</summary>
+		public bool? Force
+		{
+			get => Q<bool? >("force");
+			set => Q("force", value);
+		}
 	}
 
 	///<summary>Request options for UpdateDataFrameAnalytics <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/update-dfanalytics.html</para></summary>

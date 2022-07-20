@@ -28,6 +28,11 @@ using Elastic.Transport;
 // ReSharper disable once CheckNamespace
 namespace Elasticsearch.Net.Specification.SecurityApi
 {
+	///<summary>Request options for ActivateUserProfile <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-activate-user-profile.html</para></summary>
+	public class ActivateUserProfileRequestParameters : RequestParameters<ActivateUserProfileRequestParameters>
+	{
+	}
+
 	///<summary>Request options for Authenticate <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html</para></summary>
 	public class AuthenticateRequestParameters : RequestParameters<AuthenticateRequestParameters>
 	{
@@ -190,11 +195,39 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		}
 	}
 
+	///<summary>Request options for DisableUserProfile <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-disable-user-profile.html</para></summary>
+	public class DisableUserProfileRequestParameters : RequestParameters<DisableUserProfileRequestParameters>
+	{
+		///<summary>
+		/// If `true` then refresh the affected shards to make this operation visible to search, if `wait_for` (the default) then wait for a refresh
+		/// to make this operation visible to search, if `false` then do nothing with refreshes.
+		///</summary>
+		public Refresh? Refresh
+		{
+			get => Q<Refresh? >("refresh");
+			set => Q("refresh", value);
+		}
+	}
+
 	///<summary>Request options for EnableUser <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html</para></summary>
 	public class EnableUserRequestParameters : RequestParameters<EnableUserRequestParameters>
 	{
 		///<summary>
 		/// If `true` (the default) then refresh the affected shards to make this operation visible to search, if `wait_for` then wait for a refresh
+		/// to make this operation visible to search, if `false` then do nothing with refreshes.
+		///</summary>
+		public Refresh? Refresh
+		{
+			get => Q<Refresh? >("refresh");
+			set => Q("refresh", value);
+		}
+	}
+
+	///<summary>Request options for EnableUserProfile <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-enable-user-profile.html</para></summary>
+	public class EnableUserProfileRequestParameters : RequestParameters<EnableUserProfileRequestParameters>
+	{
+		///<summary>
+		/// If `true` then refresh the affected shards to make this operation visible to search, if `wait_for` (the default) then wait for a refresh
 		/// to make this operation visible to search, if `false` then do nothing with refreshes.
 		///</summary>
 		public Refresh? Refresh
@@ -298,6 +331,17 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 	{
 	}
 
+	///<summary>Request options for GetUserProfile <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-profile.html</para></summary>
+	public class GetUserProfileRequestParameters : RequestParameters<GetUserProfileRequestParameters>
+	{
+		///<summary>A comma-separated list of keys for which the corresponding application data are retrieved.</summary>
+		public string[] Data
+		{
+			get => Q<string[]>("data");
+			set => Q("data", value);
+		}
+	}
+
 	///<summary>Request options for GrantApiKey <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html</para></summary>
 	public class GrantApiKeyRequestParameters : RequestParameters<GrantApiKeyRequestParameters>
 	{
@@ -317,6 +361,11 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 	{
 	}
 
+	///<summary>Request options for HasPrivilegesUserProfile <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges-user-profile.html</para></summary>
+	public class HasPrivilegesUserProfileRequestParameters : RequestParameters<HasPrivilegesUserProfileRequestParameters>
+	{
+	}
+
 	///<summary>Request options for InvalidateApiKey <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html</para></summary>
 	public class InvalidateApiKeyRequestParameters : RequestParameters<InvalidateApiKeyRequestParameters>
 	{
@@ -324,6 +373,21 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 
 	///<summary>Request options for InvalidateUserAccessToken <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html</para></summary>
 	public class InvalidateUserAccessTokenRequestParameters : RequestParameters<InvalidateUserAccessTokenRequestParameters>
+	{
+	}
+
+	///<summary>Request options for OidcAuthenticate <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-authenticate.html</para></summary>
+	public class OidcAuthenticateRequestParameters : RequestParameters<OidcAuthenticateRequestParameters>
+	{
+	}
+
+	///<summary>Request options for OidcLogout <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-logout.html</para></summary>
+	public class OidcLogoutRequestParameters : RequestParameters<OidcLogoutRequestParameters>
+	{
+	}
+
+	///<summary>Request options for OidcPrepareAuthentication <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-prepare-authentication.html</para></summary>
+	public class OidcPrepareAuthenticationRequestParameters : RequestParameters<OidcPrepareAuthenticationRequestParameters>
 	{
 	}
 
@@ -416,6 +480,50 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 	///<summary>Request options for SamlServiceProviderMetadata <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-sp-metadata.html</para></summary>
 	public class SamlServiceProviderMetadataRequestParameters : RequestParameters<SamlServiceProviderMetadataRequestParameters>
 	{
+	}
+
+	///<summary>Request options for SuggestUserProfiles <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html</para></summary>
+	public class SuggestUserProfilesRequestParameters : RequestParameters<SuggestUserProfilesRequestParameters>
+	{
+		///<summary>A comma-separated list of keys for which the corresponding application data are retrieved.</summary>
+		public string[] Data
+		{
+			get => Q<string[]>("data");
+			set => Q("data", value);
+		}
+	}
+
+	///<summary>Request options for UpdateApiKey <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-api-key.html</para></summary>
+	public class UpdateApiKeyRequestParameters : RequestParameters<UpdateApiKeyRequestParameters>
+	{
+	}
+
+	///<summary>Request options for UpdateUserProfileData <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-user-profile-data.html</para></summary>
+	public class UpdateUserProfileDataRequestParameters : RequestParameters<UpdateUserProfileDataRequestParameters>
+	{
+		///<summary>only perform the update operation if the last operation that has changed the document has the specified primary term</summary>
+		public long? IfPrimaryTerm
+		{
+			get => Q<long? >("if_primary_term");
+			set => Q("if_primary_term", value);
+		}
+
+		///<summary>only perform the update operation if the last operation that has changed the document has the specified sequence number</summary>
+		public long? IfSequenceNumber
+		{
+			get => Q<long? >("if_seq_no");
+			set => Q("if_seq_no", value);
+		}
+
+		///<summary>
+		/// If `true` (the default) then refresh the affected shards to make this operation visible to search, if `wait_for` then wait for a refresh
+		/// to make this operation visible to search, if `false` then do nothing with refreshes.
+		///</summary>
+		public Refresh? Refresh
+		{
+			get => Q<Refresh? >("refresh");
+			set => Q("refresh", value);
+		}
 	}
 
 	///<summary>Request options for GetCertificates <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html</para></summary>

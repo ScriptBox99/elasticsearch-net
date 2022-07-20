@@ -149,6 +149,63 @@ namespace Elasticsearch.Net.Specification.CatApi
 		}
 	}
 
+	///<summary>Request options for ComponentTemplates <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html</para></summary>
+	public class ComponentTemplatesRequestParameters : RequestParameters<ComponentTemplatesRequestParameters>
+	{
+		///<summary>a short version of the Accept header, e.g. json, yaml</summary>
+		public string Format
+		{
+			get => Q<string>("format");
+			set
+			{
+				Q("format", value);
+				SetAcceptHeader(value);
+			}
+		}
+
+		///<summary>Comma-separated list of column names to display</summary>
+		public string[] Headers
+		{
+			get => Q<string[]>("h");
+			set => Q("h", value);
+		}
+
+		///<summary>Return help information</summary>
+		public bool? Help
+		{
+			get => Q<bool? >("help");
+			set => Q("help", value);
+		}
+
+		///<summary>Return local information, do not retrieve the state from master node (default: false)</summary>
+		public bool? Local
+		{
+			get => Q<bool? >("local");
+			set => Q("local", value);
+		}
+
+		///<summary>Explicit operation timeout for connection to master node</summary>
+		public TimeSpan MasterTimeout
+		{
+			get => Q<TimeSpan>("master_timeout");
+			set => Q("master_timeout", value);
+		}
+
+		///<summary>Comma-separated list of column names or column aliases to sort by</summary>
+		public string[] SortByColumns
+		{
+			get => Q<string[]>("s");
+			set => Q("s", value);
+		}
+
+		///<summary>Verbose mode. Display column headers</summary>
+		public bool? Verbose
+		{
+			get => Q<bool? >("v");
+			set => Q("v", value);
+		}
+	}
+
 	///<summary>Request options for Count <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html</para></summary>
 	public class CatCountRequestParameters : RequestParameters<CatCountRequestParameters>
 	{
@@ -520,14 +577,6 @@ namespace Elasticsearch.Net.Specification.CatApi
 	public class CatDatafeedsRequestParameters : RequestParameters<CatDatafeedsRequestParameters>
 	{
 		///<summary>Whether to ignore if a wildcard expression matches no datafeeds. (This includes `_all` string or when no datafeeds have been specified)</summary>
-		[Obsolete("Scheduled to be removed in 8.0, deprecated")]
-		public bool? AllowNoDatafeeds
-		{
-			get => Q<bool? >("allow_no_datafeeds");
-			set => Q("allow_no_datafeeds", value);
-		}
-
-		///<summary>Whether to ignore if a wildcard expression matches no datafeeds. (This includes `_all` string or when no datafeeds have been specified)</summary>
 		public bool? AllowNoMatch
 		{
 			get => Q<bool? >("allow_no_match");
@@ -577,14 +626,6 @@ namespace Elasticsearch.Net.Specification.CatApi
 	///<summary>Request options for Jobs <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html</para></summary>
 	public class CatJobsRequestParameters : RequestParameters<CatJobsRequestParameters>
 	{
-		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
-		[Obsolete("Scheduled to be removed in 8.0, deprecated")]
-		public bool? AllowNoJobs
-		{
-			get => Q<bool? >("allow_no_jobs");
-			set => Q("allow_no_jobs", value);
-		}
-
 		///<summary>Whether to ignore if a wildcard expression matches no jobs. (This includes `_all` string or when no jobs have been specified)</summary>
 		public bool? AllowNoMatch
 		{
