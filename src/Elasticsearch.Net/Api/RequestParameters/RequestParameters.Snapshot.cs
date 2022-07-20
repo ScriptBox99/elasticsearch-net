@@ -132,6 +132,20 @@ namespace Elasticsearch.Net.Specification.SnapshotApi
 	///<summary>Request options for Get <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html</para></summary>
 	public class GetSnapshotRequestParameters : RequestParameters<GetSnapshotRequestParameters>
 	{
+		///<summary>Offset identifier to start pagination from as returned by the 'next' field in the response body.</summary>
+		public string After
+		{
+			get => Q<string>("after");
+			set => Q("after", value);
+		}
+
+		///<summary>Value of the current sort column at which to start retrieval.</summary>
+		public string FromSortValue
+		{
+			get => Q<string>("from_sort_value");
+			set => Q("from_sort_value", value);
+		}
+
 		///<summary>Whether to ignore unavailable snapshots, defaults to false which means a SnapshotMissingException is thrown</summary>
 		public bool? IgnoreUnavailable
 		{
@@ -153,11 +167,56 @@ namespace Elasticsearch.Net.Specification.SnapshotApi
 			set => Q("index_details", value);
 		}
 
+		///<summary>Whether to include the name of each index in the snapshot. Defaults to true.</summary>
+		public bool? IndexNames
+		{
+			get => Q<bool? >("index_names");
+			set => Q("index_names", value);
+		}
+
 		///<summary>Explicit operation timeout for connection to master node</summary>
 		public TimeSpan MasterTimeout
 		{
 			get => Q<TimeSpan>("master_timeout");
 			set => Q("master_timeout", value);
+		}
+
+		///<summary>Numeric offset to start pagination based on the snapshots matching the request. Defaults to 0</summary>
+		public int? Offset
+		{
+			get => Q<int? >("offset");
+			set => Q("offset", value);
+		}
+
+		///<summary>Sort order</summary>
+		public Order? Order
+		{
+			get => Q<Order? >("order");
+			set => Q("order", value);
+		}
+
+		///<summary>Maximum number of snapshots to return. Defaults to 0 which means return all that match without limit.</summary>
+		public int? Size
+		{
+			get => Q<int? >("size");
+			set => Q("size", value);
+		}
+
+		///<summary>
+		/// Filter snapshots by a comma-separated list of SLM policy names that snapshots belong to. Accepts wildcards. Use the special pattern
+		/// '_none' to match snapshots without an SLM policy
+		///</summary>
+		public string SlmPolicyFilter
+		{
+			get => Q<string>("slm_policy_filter");
+			set => Q("slm_policy_filter", value);
+		}
+
+		///<summary>Allows setting a sort order for the result. Defaults to start_time</summary>
+		public Sort? Sort
+		{
+			get => Q<Sort? >("sort");
+			set => Q("sort", value);
 		}
 
 		///<summary>Whether to show verbose snapshot info or only show the basic info found in the repository index blob</summary>

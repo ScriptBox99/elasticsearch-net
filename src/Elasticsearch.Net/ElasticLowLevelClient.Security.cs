@@ -47,6 +47,19 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		{
 		}
 
+		///<summary>POST on /_security/profile/_activate <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-activate-user-profile.html</para></summary>
+		///<param name = "body">The grant type and user&#x27;s credential</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		public TResponse ActivateUserProfile<TResponse>(PostData body, ActivateUserProfileRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(POST, "_security/profile/_activate", body, RequestParams(requestParameters));
+		///<summary>POST on /_security/profile/_activate <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-activate-user-profile.html</para></summary>
+		///<param name = "body">The grant type and user&#x27;s credential</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		[MapsApi("security.activate_user_profile", "body")]
+		public Task<TResponse> ActivateUserProfileAsync<TResponse>(PostData body, ActivateUserProfileRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(POST, "_security/profile/_activate", ctx, body, RequestParams(requestParameters));
 		///<summary>GET on /_security/_authenticate <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html</para></summary>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
 		public TResponse Authenticate<TResponse>(AuthenticateRequestParameters requestParameters = null)
@@ -259,6 +272,19 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		[MapsApi("security.disable_user", "username")]
 		public Task<TResponse> DisableUserAsync<TResponse>(string username, DisableUserRequestParameters requestParameters = null, CancellationToken ctx = default)
 			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(PUT, Url($"_security/user/{username:username}/_disable"), ctx, null, RequestParams(requestParameters));
+		///<summary>PUT on /_security/profile/{uid}/_disable <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-disable-user-profile.html</para></summary>
+		///<param name = "uid">Unique identifier for the user profile</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		public TResponse DisableUserProfile<TResponse>(string uid, DisableUserProfileRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(PUT, Url($"_security/profile/{uid:uid}/_disable"), null, RequestParams(requestParameters));
+		///<summary>PUT on /_security/profile/{uid}/_disable <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-disable-user-profile.html</para></summary>
+		///<param name = "uid">Unique identifier for the user profile</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		[MapsApi("security.disable_user_profile", "uid")]
+		public Task<TResponse> DisableUserProfileAsync<TResponse>(string uid, DisableUserProfileRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(PUT, Url($"_security/profile/{uid:uid}/_disable"), ctx, null, RequestParams(requestParameters));
 		///<summary>PUT on /_security/user/{username}/_enable <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html</para></summary>
 		///<param name = "username">The username of the user to enable</param>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
@@ -270,6 +296,19 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		[MapsApi("security.enable_user", "username")]
 		public Task<TResponse> EnableUserAsync<TResponse>(string username, EnableUserRequestParameters requestParameters = null, CancellationToken ctx = default)
 			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(PUT, Url($"_security/user/{username:username}/_enable"), ctx, null, RequestParams(requestParameters));
+		///<summary>PUT on /_security/profile/{uid}/_enable <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-enable-user-profile.html</para></summary>
+		///<param name = "uid">An unique identifier of the user profile</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		public TResponse EnableUserProfile<TResponse>(string uid, EnableUserProfileRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(PUT, Url($"_security/profile/{uid:uid}/_enable"), null, RequestParams(requestParameters));
+		///<summary>PUT on /_security/profile/{uid}/_enable <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-enable-user-profile.html</para></summary>
+		///<param name = "uid">An unique identifier of the user profile</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		[MapsApi("security.enable_user_profile", "uid")]
+		public Task<TResponse> EnableUserProfileAsync<TResponse>(string uid, EnableUserProfileRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(PUT, Url($"_security/profile/{uid:uid}/_enable"), ctx, null, RequestParams(requestParameters));
 		///<summary>GET on /_security/enroll/kibana <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-kibana-enrollment.html</para></summary>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
 		public TResponse EnrollKibana<TResponse>(EnrollKibanaRequestParameters requestParameters = null)
@@ -465,6 +504,19 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		[MapsApi("security.get_user_privileges", "")]
 		public Task<TResponse> GetUserPrivilegesAsync<TResponse>(GetUserPrivilegesRequestParameters requestParameters = null, CancellationToken ctx = default)
 			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(GET, "_security/user/_privileges", ctx, null, RequestParams(requestParameters));
+		///<summary>GET on /_security/profile/{uid} <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-profile.html</para></summary>
+		///<param name = "uid">An unique identifier of the user profile</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		public TResponse GetUserProfile<TResponse>(string uid, GetUserProfileRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(GET, Url($"_security/profile/{uid:uid}"), null, RequestParams(requestParameters));
+		///<summary>GET on /_security/profile/{uid} <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-profile.html</para></summary>
+		///<param name = "uid">An unique identifier of the user profile</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		[MapsApi("security.get_user_profile", "uid")]
+		public Task<TResponse> GetUserProfileAsync<TResponse>(string uid, GetUserProfileRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(GET, Url($"_security/profile/{uid:uid}"), ctx, null, RequestParams(requestParameters));
 		///<summary>POST on /_security/api_key/grant <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html</para></summary>
 		///<param name = "body">The api key request to create an API key</param>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
@@ -500,6 +552,19 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		[MapsApi("security.has_privileges", "user, body")]
 		public Task<TResponse> HasPrivilegesAsync<TResponse>(string user, PostData body, HasPrivilegesRequestParameters requestParameters = null, CancellationToken ctx = default)
 			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(POST, Url($"_security/user/{user:user}/_has_privileges"), ctx, body, RequestParams(requestParameters));
+		///<summary>POST on /_security/profile/_has_privileges <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges-user-profile.html</para></summary>
+		///<param name = "body">The privileges to check and the list of profile IDs</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		public TResponse HasPrivilegesUserProfile<TResponse>(PostData body, HasPrivilegesUserProfileRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(POST, "_security/profile/_has_privileges", body, RequestParams(requestParameters));
+		///<summary>POST on /_security/profile/_has_privileges <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges-user-profile.html</para></summary>
+		///<param name = "body">The privileges to check and the list of profile IDs</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		[MapsApi("security.has_privileges_user_profile", "body")]
+		public Task<TResponse> HasPrivilegesUserProfileAsync<TResponse>(PostData body, HasPrivilegesUserProfileRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(POST, "_security/profile/_has_privileges", ctx, body, RequestParams(requestParameters));
 		///<summary>DELETE on /_security/api_key <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html</para></summary>
 		///<param name = "body">The api key request to invalidate API key(s)</param>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
@@ -522,6 +587,39 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		[MapsApi("security.invalidate_token", "body")]
 		public Task<TResponse> InvalidateUserAccessTokenAsync<TResponse>(PostData body, InvalidateUserAccessTokenRequestParameters requestParameters = null, CancellationToken ctx = default)
 			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(DELETE, "_security/oauth2/token", ctx, body, RequestParams(requestParameters));
+		///<summary>POST on /_security/oidc/authenticate <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-authenticate.html</para></summary>
+		///<param name = "body">The OpenID Connect response to authenticate</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		public TResponse OidcAuthenticate<TResponse>(PostData body, OidcAuthenticateRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(POST, "_security/oidc/authenticate", body, RequestParams(requestParameters));
+		///<summary>POST on /_security/oidc/authenticate <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-authenticate.html</para></summary>
+		///<param name = "body">The OpenID Connect response to authenticate</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		[MapsApi("security.oidc_authenticate", "body")]
+		public Task<TResponse> OidcAuthenticateAsync<TResponse>(PostData body, OidcAuthenticateRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(POST, "_security/oidc/authenticate", ctx, body, RequestParams(requestParameters));
+		///<summary>POST on /_security/oidc/logout <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-logout.html</para></summary>
+		///<param name = "body">Access token and refresh token to invalidate</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		public TResponse OidcLogout<TResponse>(PostData body, OidcLogoutRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(POST, "_security/oidc/logout", body, RequestParams(requestParameters));
+		///<summary>POST on /_security/oidc/logout <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-logout.html</para></summary>
+		///<param name = "body">Access token and refresh token to invalidate</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		[MapsApi("security.oidc_logout", "body")]
+		public Task<TResponse> OidcLogoutAsync<TResponse>(PostData body, OidcLogoutRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(POST, "_security/oidc/logout", ctx, body, RequestParams(requestParameters));
+		///<summary>POST on /_security/oidc/prepare <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-prepare-authentication.html</para></summary>
+		///<param name = "body">The OpenID Connect authentication realm configuration</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		public TResponse OidcPrepareAuthentication<TResponse>(PostData body, OidcPrepareAuthenticationRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(POST, "_security/oidc/prepare", body, RequestParams(requestParameters));
+		///<summary>POST on /_security/oidc/prepare <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-oidc-prepare-authentication.html</para></summary>
+		///<param name = "body">The OpenID Connect authentication realm configuration</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		[MapsApi("security.oidc_prepare_authentication", "body")]
+		public Task<TResponse> OidcPrepareAuthenticationAsync<TResponse>(PostData body, OidcPrepareAuthenticationRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(POST, "_security/oidc/prepare", ctx, body, RequestParams(requestParameters));
 		///<summary>PUT on /_security/privilege/ <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html</para></summary>
 		///<param name = "body">The privilege(s) to add</param>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
@@ -649,6 +747,47 @@ namespace Elasticsearch.Net.Specification.SecurityApi
 		[MapsApi("security.saml_service_provider_metadata", "realm_name")]
 		public Task<TResponse> SamlServiceProviderMetadataAsync<TResponse>(string realmName, SamlServiceProviderMetadataRequestParameters requestParameters = null, CancellationToken ctx = default)
 			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(GET, Url($"_security/saml/metadata/{realmName:realmName}"), ctx, null, RequestParams(requestParameters));
+		///<summary>POST on /_security/profile/_suggest <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html</para></summary>
+		///<param name = "body">The suggestion definition for user profiles</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		public TResponse SuggestUserProfiles<TResponse>(PostData body, SuggestUserProfilesRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(POST, "_security/profile/_suggest", body, RequestParams(requestParameters));
+		///<summary>POST on /_security/profile/_suggest <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html</para></summary>
+		///<param name = "body">The suggestion definition for user profiles</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		[MapsApi("security.suggest_user_profiles", "body")]
+		public Task<TResponse> SuggestUserProfilesAsync<TResponse>(PostData body, SuggestUserProfilesRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(POST, "_security/profile/_suggest", ctx, body, RequestParams(requestParameters));
+		///<summary>PUT on /_security/api_key/{id} <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-api-key.html</para></summary>
+		///<param name = "id">The ID of the API key to update</param>
+		///<param name = "body">The API key request to update attributes of an API key.</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		public TResponse UpdateApiKey<TResponse>(string id, PostData body, UpdateApiKeyRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(PUT, Url($"_security/api_key/{id:id}"), body, RequestParams(requestParameters));
+		///<summary>PUT on /_security/api_key/{id} <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-api-key.html</para></summary>
+		///<param name = "id">The ID of the API key to update</param>
+		///<param name = "body">The API key request to update attributes of an API key.</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		[MapsApi("security.update_api_key", "id, body")]
+		public Task<TResponse> UpdateApiKeyAsync<TResponse>(string id, PostData body, UpdateApiKeyRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(PUT, Url($"_security/api_key/{id:id}"), ctx, body, RequestParams(requestParameters));
+		///<summary>PUT on /_security/profile/{uid}/_data <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-user-profile-data.html</para></summary>
+		///<param name = "uid">An unique identifier of the user profile</param>
+		///<param name = "body">The application data to update</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		public TResponse UpdateUserProfileData<TResponse>(string uid, PostData body, UpdateUserProfileDataRequestParameters requestParameters = null)
+			where TResponse : class, ITransportResponse, new() => DoRequest<TResponse>(PUT, Url($"_security/profile/{uid:uid}/_data"), body, RequestParams(requestParameters));
+		///<summary>PUT on /_security/profile/{uid}/_data <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-user-profile-data.html</para></summary>
+		///<param name = "uid">An unique identifier of the user profile</param>
+		///<param name = "body">The application data to update</param>
+		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
+		///<remarks>Note: Experimental within the Elasticsearch server, this functionality is Experimental and may be changed or removed completely in a future release. Elastic will take a best effort approach to fix any issues, but experimental features are not subject to the support SLA of official GA features. This functionality is subject to potential breaking changes within a minor version, meaning that your referencing code may break when this library is upgraded.</remarks>
+		[MapsApi("security.update_user_profile_data", "uid, body")]
+		public Task<TResponse> UpdateUserProfileDataAsync<TResponse>(string uid, PostData body, UpdateUserProfileDataRequestParameters requestParameters = null, CancellationToken ctx = default)
+			where TResponse : class, ITransportResponse, new() => DoRequestAsync<TResponse>(PUT, Url($"_security/profile/{uid:uid}/_data"), ctx, body, RequestParams(requestParameters));
 		///<summary>GET on /_ssl/certificates <para>https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html</para></summary>
 		///<param name = "requestParameters">Request specific configuration such as querystring parameters &amp; request specific connection settings.</param>
 		public TResponse GetCertificates<TResponse>(GetCertificatesRequestParameters requestParameters = null)

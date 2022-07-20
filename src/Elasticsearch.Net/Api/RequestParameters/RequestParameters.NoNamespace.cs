@@ -511,27 +511,6 @@ namespace Elasticsearch.Net
 			set => Q("sort", value);
 		}
 
-		///<summary>True or false to return the _source field or not, or a list of fields to return</summary>
-		public bool? SourceEnabled
-		{
-			get => Q<bool? >("_source");
-			set => Q("_source", value);
-		}
-
-		///<summary>A list of fields to exclude from the returned _source field</summary>
-		public string[] SourceExcludes
-		{
-			get => Q<string[]>("_source_excludes");
-			set => Q("_source_excludes", value);
-		}
-
-		///<summary>A list of fields to extract and return from the _source field</summary>
-		public string[] SourceIncludes
-		{
-			get => Q<string[]>("_source_includes");
-			set => Q("_source_includes", value);
-		}
-
 		///<summary>Specific 'tag' of the request for logging and statistical purposes</summary>
 		public string[] Stats
 		{
@@ -864,6 +843,13 @@ namespace Elasticsearch.Net
 			set => Q("fields", value);
 		}
 
+		///<summary>An optional set of filters: can include +metadata,-metadata,-nested,-multifield,-parent</summary>
+		public string[] Filters
+		{
+			get => Q<string[]>("filters");
+			set => Q("filters", value);
+		}
+
 		///<summary>Whether specified concrete indices should be ignored when unavailable (missing or closed)</summary>
 		public bool? IgnoreUnavailable
 		{
@@ -877,11 +863,28 @@ namespace Elasticsearch.Net
 			get => Q<bool? >("include_unmapped");
 			set => Q("include_unmapped", value);
 		}
+
+		///<summary>Only return results for fields that have one of the types in the list</summary>
+		public string[] Types
+		{
+			get => Q<string[]>("types");
+			set => Q("types", value);
+		}
 	}
 
 	///<summary>Request options for Get <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html</para></summary>
 	public class GetRequestParameters : RequestParameters<GetRequestParameters>
 	{
+		///<summary>
+		/// Should this request force synthetic _source? Use this to test if the mapping supports synthetic _source and to get a sense of the worst
+		/// case performance. Fetches with this enabled will be slower the enabling synthetic source natively in the index.
+		///</summary>
+		public bool? ForceSyntheticSource
+		{
+			get => Q<bool? >("force_synthetic_source");
+			set => Q("force_synthetic_source", value);
+		}
+
 		///<summary>Specify the node or shard the operation should be performed on (default: random)</summary>
 		public string Preference
 		{
@@ -1151,6 +1154,16 @@ namespace Elasticsearch.Net
 	///<summary>Request options for MultiGet <para>https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html</para></summary>
 	public class MultiGetRequestParameters : RequestParameters<MultiGetRequestParameters>
 	{
+		///<summary>
+		/// Should this request force synthetic _source? Use this to test if the mapping supports synthetic _source and to get a sense of the worst
+		/// case performance. Fetches with this enabled will be slower the enabling synthetic source natively in the index.
+		///</summary>
+		public bool? ForceSyntheticSource
+		{
+			get => Q<bool? >("force_synthetic_source");
+			set => Q("force_synthetic_source", value);
+		}
+
 		///<summary>Specify the node or shard the operation should be performed on (default: random)</summary>
 		public string Preference
 		{
@@ -1670,6 +1683,16 @@ namespace Elasticsearch.Net
 			set => Q("expand_wildcards", value);
 		}
 
+		///<summary>
+		/// Should this request force synthetic _source? Use this to test if the mapping supports synthetic _source and to get a sense of the worst
+		/// case performance. Fetches with this enabled will be slower the enabling synthetic source natively in the index.
+		///</summary>
+		public bool? ForceSyntheticSource
+		{
+			get => Q<bool? >("force_synthetic_source");
+			set => Q("force_synthetic_source", value);
+		}
+
 		///<summary>Whether specified concrete, expanded or aliased indices should be ignored when throttled</summary>
 		public bool? IgnoreThrottled
 		{
@@ -1885,6 +1908,13 @@ namespace Elasticsearch.Net
 		{
 			get => Q<bool? >("track_total_hits");
 			set => Q("track_total_hits", value);
+		}
+
+		///<summary>If true, the hits and aggs layers will contain additional point features with suggested label positions for the original features.</summary>
+		public bool? WithLabels
+		{
+			get => Q<bool? >("with_labels");
+			set => Q("with_labels", value);
 		}
 	}
 
@@ -2367,27 +2397,6 @@ namespace Elasticsearch.Net
 		{
 			get => Q<string[]>("sort");
 			set => Q("sort", value);
-		}
-
-		///<summary>True or false to return the _source field or not, or a list of fields to return</summary>
-		public bool? SourceEnabled
-		{
-			get => Q<bool? >("_source");
-			set => Q("_source", value);
-		}
-
-		///<summary>A list of fields to exclude from the returned _source field</summary>
-		public string[] SourceExcludes
-		{
-			get => Q<string[]>("_source_excludes");
-			set => Q("_source_excludes", value);
-		}
-
-		///<summary>A list of fields to extract and return from the _source field</summary>
-		public string[] SourceIncludes
-		{
-			get => Q<string[]>("_source_includes");
-			set => Q("_source_includes", value);
 		}
 
 		///<summary>Specific 'tag' of the request for logging and statistical purposes</summary>
